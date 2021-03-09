@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+/* src/App.js */
+import React from 'react'
+import Amplify from 'aws-amplify'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { withAuthenticator } from '@aws-amplify/ui-react'
+
+
+import awsExports from "./aws-exports";
+import Quiz from './components/Quiz';
+Amplify.configure(awsExports);
+
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav className="header-nav">
+        <ul>
+          <li>
+            <Link to="/quiz">Cocktail Quiz</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <Switch>
+        <Route path="/quiz">
+            <Quiz />
+        </Route>
+        <Route path="/">
+          <Quiz />
+        </Route>
+      </Switch>
     </div>
+  </Router>
+
   );
 }
 
-export default App;
+export default withAuthenticator(App)
