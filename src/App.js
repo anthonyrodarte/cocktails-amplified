@@ -7,11 +7,12 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { withAuthenticator } from '@aws-amplify/ui-react'
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 
 import awsExports from "./aws-exports";
 import Quiz from './components/Quiz';
+
 Amplify.configure(awsExports);
 
 
@@ -24,12 +25,15 @@ function App() {
           <li>
             <Link to="/quiz">Cocktail Quiz</Link>
           </li>
+          <li>
+            <AmplifySignOut />
+          </li>
         </ul>
       </nav>
 
       <Switch>
         <Route path="/quiz">
-            <Quiz />
+          <Quiz />
         </Route>
         <Route path="/">
           <Quiz />
@@ -41,4 +45,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App)
+export default withAuthenticator(App, { includeGreetings: true })
