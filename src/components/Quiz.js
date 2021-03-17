@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { first, shuffle, drop, intersection} from 'lodash'
 
+import Ingredients from './Ingredients'
+
 const Cocktails = [
   {
     name: 'Old Fashioned',
@@ -19,7 +21,7 @@ const Cocktails = [
 const Quiz = () => {
 
   const [cocktailList, changeCocktailList] = useState(shuffle(Cocktails))
-  const [ingredientInputs, changeIngredientInput] = useState([{quantity: '', measurement: '', ingredient: ''}])
+  const [ingredientInputs, changeIngredientInput] = useState([{quantity: '', measurement: '', name: ''}])
   const [quizScore, updateQuizScore] = useState({score: 0, incorrectList: []})
 
   let cocktailName
@@ -34,17 +36,15 @@ const Quiz = () => {
   const updateCocktailList  = () => {
     const newCocktailList = drop(cocktailList)
     changeCocktailList(newCocktailList)
-    changeIngredientInput([{quantity: '', measurement: '', ingredient: ''}])
+    changeIngredientInput([{quantity: '', measurement: '', name: ''}])
   }
 
   const validateIngredients = (e) => {
     e.preventDefault()
-    const recipeStrings = []
-
-    ingredientInputs.map((recipe) => {
-      const {quantity, measurement, ingredient} = recipe
-      const recipeString = quantity + ' ' + measurement + ' ' + ingredient
-      return recipeStrings.push(recipeString.toLowerCase())
+    const recipeStrings = ingredientInputs.map((recipe) => {
+      const {quantity, measurement, name} = recipe
+      const recipeString = quantity + ' ' + measurement + ' ' + name
+      return recipeString.toLowerCase()
     })
 
     const recipeVerdict = intersection(recipeStrings, cocktailRecipe).length === cocktailRecipe.length
@@ -52,10 +52,9 @@ const Quiz = () => {
     const { score, incorrectList } = quizScore
 
     if (recipeVerdict === true ) {
-      updateQuizScore({score: score + 1, incorrectList: quizScore.incorrectList})
+      updateQuizScore({ ...quizScore, score: score + 1})
     } else {
-      incorrectList.push({cocktailName, cocktailRecipe })
-      updateQuizScore({score: score, incorrectList: incorrectList})
+      updateQuizScore({ ...quizScore, incorrectList: [...incorrectList, { cocktailName, cocktailRecipe }]})
     }
 
     updateCocktailList()
@@ -63,30 +62,18 @@ const Quiz = () => {
 
   const addIngredientInput = (e) => {
     e.preventDefault()
-    changeIngredientInput([...ingredientInputs, {quantity: '', measurement: '', ingredient: ''}])
+    changeIngredientInput([...ingredientInputs, {quantity: '', measurement: '', name: ''}])
   }
 
-  const updateInputValues = (e) => {
-    const i = e.target.getAttribute('data-index')
+  const handleUpdateInputValues = (e, i) => {
+
     const type = e.target.getAttribute('data-type')
     const { value } = e.target
 
     let inputs = [...ingredientInputs]
     let input = inputs[i]
 
-    switch (type) {
-      case 'quantity':
-        input.quantity = value
-        break;
-      case 'measurement':
-        input.measurement = value
-        break;
-      case 'ingredient':
-        input.ingredient = value
-        break;
-      default:
-        return
-    }
+    input[type] = value; 
 
     inputs[i] = input
     changeIngredientInput(inputs)
@@ -99,29 +86,19 @@ const Quiz = () => {
     if (cocktailName) {
       return (
         <form>
-          <label>Ingredient List
-          <br />
-          {ingredientInputs.map((ingredients, idx) => (
-            <div key={idx} >
-              <input data-index={idx} data-type='quantity' placeholder="quantity" onChange={updateInputValues} value={ingredients.quantity}/>
-              <select data-index={idx} data-type='measurement' onChange={updateInputValues} value={ingredients.measurement}>
-                <option value="" disabled></option>
-                <option value="oz">oz</option>
-                <option value="dashes">dashe(s)</option>
-                <option value="cube">cube</option>
-              </select>
-              <input data-index={idx} data-type='ingredient' placeholder="ingredient" onChange={updateInputValues} value={ingredients.ingredient}/>
-            </div>
-          ))}
-          <br />
+          <div className="ingredients-container">
+          <p className="ingredients-title">Ingredients</p>
+          <div className="ingredients-list-container">
+            {ingredientInputs.map((ingredient, idx) => (
+              <Ingredients key={idx} ingredient={ingredient} onUpdateInputValues={handleUpdateInputValues} idx={idx} />
+            ))}
+          </div>
           <button onClick={addIngredientInput}>+</button>
-          <br />
+        </div>
           <button className="quiz-submit" onClick={validateIngredients}>Submit</button>
-          </label>
         </form>
       )
     } else {
-
       const { incorrectList } = quizScore
       return (
         <div>
