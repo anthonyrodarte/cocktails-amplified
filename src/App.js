@@ -12,6 +12,7 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 import awsExports from "./aws-exports";
 import Quiz from './components/Quiz';
+import CocktailForm from './components/Form'
 
 Amplify.configure(awsExports);
 
@@ -26,6 +27,9 @@ function App() {
             <Link to="/quiz">Cocktail Quiz</Link>
           </li>
           <li>
+            <Link to="/cocktailform">Add Cocktails</Link>
+          </li>
+          <li>
             <AmplifySignOut />
           </li>
         </ul>
@@ -34,6 +38,9 @@ function App() {
       <Switch>
         <Route path="/quiz">
           <Quiz />
+        </Route>
+        <Route path="/cocktailform">
+          <CocktailForm />
         </Route>
         <Route path="/">
           <Quiz />
