@@ -1,43 +1,46 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createCocktail = /* GraphQL */ `
+  mutation CreateCocktail(
+    $input: CreateCocktailInput!
+    $condition: ModelCocktailConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createCocktail(input: $input, condition: $condition) {
       id
       name
       recipe
+      username
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateCocktail = /* GraphQL */ `
+  mutation UpdateCocktail(
+    $input: UpdateCocktailInput!
+    $condition: ModelCocktailConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateCocktail(input: $input, condition: $condition) {
       id
       name
       recipe
+      username
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteCocktail = /* GraphQL */ `
+  mutation DeleteCocktail(
+    $input: DeleteCocktailInput!
+    $condition: ModelCocktailConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteCocktail(input: $input, condition: $condition) {
       id
       name
       recipe
+      username
       createdAt
       updatedAt
     }
