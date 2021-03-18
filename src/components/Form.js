@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from 'react';
-import { Auth } from 'aws-amplify'
-
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { createCocktail } from '../graphql/mutations'
+import { listCocktails } from '../graphql/queries'
 import Ingredients from './Ingredients';
 
 const initialState = [{quantity: '', measurement: '', name: ''}]
@@ -48,20 +49,30 @@ const CocktailForm = () => {
         return recipeString.toLowerCase()
       })
 
-      const cocktail = { 
+      const cocktailPayload = { 
         name: cocktailName,
         recipe: recipeStrings,
         username: currentUsername
        }
-
-      console.log(cocktail);
+       setCocktailName('')
+       changeIngredientInput(initialState)
+       await API.graphql(graphqlOperation(createCocktail, {input: cocktailPayload}))
     } catch (err) {
       console.log('error creating todo:', err)
     }
   }
 
+  async function fetchCocktails() {
+    try {
+      const cocktailData = await API.graphql(graphqlOperation(listCocktails))
+      const cocktails = cocktailData.data.listCocktails.items
+      console.log(cocktails);
+    } catch (err) { console.log('error fetching cocktails', err) }
+  }
+
   useEffect(() => {
     getUser().then( userData => setCurrentUsername(userData.username))
+    fetchCocktails()
   }, [])
 
   return (
