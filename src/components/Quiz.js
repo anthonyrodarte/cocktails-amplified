@@ -1,26 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { first, shuffle, drop, intersection} from 'lodash'
+import { API, graphqlOperation } from 'aws-amplify'
 
 import Ingredients from './Ingredients'
+import { listCocktails } from '../graphql/queries'
 
-const Cocktails = [
-  {
-    name: 'Old Fashioned',
-    recipe: ['1 cube sugar', '3 dashes bitters', '2 oz rye']
-  },
-  {
-    name: 'Daquiri',
-    recipe: ['.75 oz simple syrup', '1 oz lime juice', '2 oz rum']
-  },
-  {
-    name: 'Manhattan',
-    recipe: ['.75 oz sweet vermouth', '2 dashes bitters', '2 oz rye']
-  }
-]
 
 const Quiz = () => {
 
-  const [cocktailList, changeCocktailList] = useState(shuffle(Cocktails))
+  const [cocktailList, changeCocktailList] = useState({name: '', recipe: ['']})
   const [ingredientInputs, changeIngredientInput] = useState([{quantity: '', measurement: '', name: ''}])
   const [quizScore, updateQuizScore] = useState({score: 0, incorrectList: []})
 
@@ -31,6 +19,14 @@ const Quiz = () => {
     const { name, recipe } = first(cocktailList)
     cocktailName = name
     cocktailRecipe = recipe
+  }
+
+  async function fetchCocktails() {
+    try {
+      const cocktailData = await API.graphql(graphqlOperation(listCocktails))
+      const cocktails = cocktailData.data.listCocktails.items
+      changeCocktailList(shuffle(cocktails))
+    } catch (err) { console.log('error fetching cocktails', err) }
   }
 
   const updateCocktailList  = () => {
@@ -123,6 +119,10 @@ const Quiz = () => {
       )
     }
   }
+
+  useEffect(() => {
+    fetchCocktails()
+  }, [])
 
   return (
     <div className="quiz">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { Auth, API, graphqlOperation } from 'aws-amplify'
 import { createCocktail } from '../graphql/mutations'
-import { listCocktails } from '../graphql/queries'
 import Ingredients from './Ingredients';
 
 const initialState = [{quantity: '', measurement: '', name: ''}]
@@ -62,17 +61,8 @@ const CocktailForm = () => {
     }
   }
 
-  async function fetchCocktails() {
-    try {
-      const cocktailData = await API.graphql(graphqlOperation(listCocktails))
-      const cocktails = cocktailData.data.listCocktails.items
-      console.log(cocktails);
-    } catch (err) { console.log('error fetching cocktails', err) }
-  }
-
   useEffect(() => {
     getUser().then( userData => setCurrentUsername(userData.username))
-    fetchCocktails()
   }, [])
 
   return (
