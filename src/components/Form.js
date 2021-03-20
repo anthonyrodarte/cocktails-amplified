@@ -57,7 +57,7 @@ const CocktailForm = () => {
        changeIngredientInput(initialState)
        await API.graphql(graphqlOperation(createCocktail, {input: cocktailPayload}))
     } catch (err) {
-      console.log('error creating todo:', err)
+      console.log('error creating cocktail:', err)
     }
   }
 
