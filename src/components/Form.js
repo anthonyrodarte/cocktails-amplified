@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react';
-import { Auth } from 'aws-amplify'
-
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { createCocktail } from '../graphql/mutations'
 import Ingredients from './Ingredients';
 
 const initialState = [{quantity: '', measurement: '', name: ''}]
@@ -48,15 +48,16 @@ const CocktailForm = () => {
         return recipeString.toLowerCase()
       })
 
-      const cocktail = { 
+      const cocktailPayload = { 
         name: cocktailName,
         recipe: recipeStrings,
         username: currentUsername
        }
-
-      console.log(cocktail);
+       setCocktailName('')
+       changeIngredientInput(initialState)
+       await API.graphql(graphqlOperation(createCocktail, {input: cocktailPayload}))
     } catch (err) {
-      console.log('error creating todo:', err)
+      console.log('error creating cocktail:', err)
     }
   }
 
