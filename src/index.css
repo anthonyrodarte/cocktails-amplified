@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #6C9A8B;
   min-height: 100vh;
 }
 
@@ -29,24 +28,11 @@ code {
 }
 
 .quiz {
-  color: #FBF7F4;
+  color: #6C9A8B;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 600;
 }
-
-/* .quiz input, .quiz select {
-  border-radius: 5px;
-  border: 2px solid #FBF7F4;
-  margin: 0px 3px 0px 3px;
-}
-
-.quiz button {
-  border-radius: 5px;
-  background: #e8998d;
-  color: #FBF7F4;
-  border: 2px solid #fbf7f4;
-} */
 
 .quiz-submit {
   padding: 3px 6px 3px 6px;
@@ -55,11 +41,13 @@ code {
 
 .cocktail-name {
   border: 4px solid #FBF7F4;
+  text-transform: uppercase;
   padding: 5px;
 }
 
 .cocktail-image {
-  height: 40vh;
+  width: 100%;
+  padding-top: 20px;
 }
 
 .quiz header {
@@ -92,14 +80,15 @@ code {
   text-align: center;
   line-height: 80px;;
   margin: 0;
+  color: #000;
 }
 
 .ingredients-container {
   position: relative;
-  height: 70vh;
   max-height: 1000px;
+  height: 100%;
   max-width: 500px;
-  width: 50%;
+  width: 100%;
   margin: auto;
   background: white;
   padding-bottom: 1px;
@@ -130,6 +119,23 @@ code {
   padding-bottom: 1px;
 }
 
+.quiz-boxes-container {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 5% 0 5%;
+  height: 400px;
+}
+.quiz-boxes {
+  width: 400px;
+  display: inline-block;
+  height: 100%;
+  border: 1px solid #000;
+}
+
+.quiz-form {
+  height: 100%;
+}
+
 .ingredient-inputs > * {
   height: 100%;
   font-size: 100%;
@@ -148,4 +154,22 @@ code {
 
 .ingredient-name-input {
   width: 60%;
+}
+
+.cocktail-title {
+  font-size: 25px;
+  height: 18%;
+  border-bottom: 1px solid #000;
+  text-align: center;
+  line-height: 80px;;
+  margin: 0;
+  color: #000;
+}
+
+.quiz-boxes.left {
+  margin-left: auto;
+}
+
+.quiz-boxes.right {
+  margin-right: auto;
 }
