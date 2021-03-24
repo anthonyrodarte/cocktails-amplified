@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  background: #d9ffe8;
 }
 
 code {
@@ -28,15 +29,24 @@ code {
 }
 
 .quiz {
-  color: #6C9A8B;
+  color: #079165;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 600;
 }
 
 .quiz-submit {
-  padding: 3px 6px 3px 6px;
-  margin-top: 15px;
+  padding: 5px;
+  background: #fff;
+  color: #079165;
+  border: 2px solid #079165;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.quiz-submit:hover {
+  background: #eee;
 }
 
 .cocktail-name {
@@ -53,7 +63,7 @@ code {
 .quiz header {
   font-size: 35px;
   font-weight: 800;
-  color: #E8998D;
+  color: #079143;
 }
 
 .inc-title {
@@ -129,7 +139,8 @@ code {
   width: 400px;
   display: inline-block;
   height: 100%;
-  border: 1px solid #000;
+  border: 1px solid #079165;
+  background: #fff;
 }
 
 .quiz-form {
@@ -168,8 +179,10 @@ code {
 
 .quiz-boxes.left {
   margin-left: auto;
+  border-right: solid 1px #000;
 }
 
 .quiz-boxes.right {
   margin-right: auto;
+  border-left: 0px;
 }

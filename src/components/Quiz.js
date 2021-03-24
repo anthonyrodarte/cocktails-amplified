@@ -94,7 +94,7 @@ const Quiz = () => {
 	const renderControls = () => {
 		if (cocktailName) {
 			return (
-				<form className='quiz-form'>
+				<div className='quiz-form'>
 					<div className='ingredients-container'>
 						<p className='ingredients-title'>Ingredients</p>
 						<div className='ingredients-list-container'>
@@ -109,10 +109,7 @@ const Quiz = () => {
 						</div>
 						<button onClick={addIngredientInput}>+</button>
 					</div>
-					<button className='quiz-submit' onClick={validateIngredients}>
-						Submit
-					</button>
-				</form>
+				</div>
 			);
 		} else {
 			const { incorrectList } = quizScore;
@@ -144,6 +141,16 @@ const Quiz = () => {
 		}
 	};
 
+  const renderSubmitButton = () => {
+    if (cocktailName) {
+      return (
+        <button className='quiz-submit' onClick={validateIngredients}>
+						Submit
+				</button>
+      )
+    }
+  }
+
 	useEffect(() => {
 		fetchCocktails();
 	}, []);
@@ -155,6 +162,7 @@ const Quiz = () => {
 				<p>
 					Score: <span className='fade-in'>{score}</span>
 				</p>
+        {renderSubmitButton()}
 			</div>
 			<div className='quiz-boxes-container'>
 				<div className='quiz-boxes left'>
