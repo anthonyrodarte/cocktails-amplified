@@ -71,26 +71,32 @@ const CocktailForm = () => {
 
 	return (
 		<div>
-			<input
-				onChange={(event) => setInput(event.target.value)}
-				value={cocktailName}
-				placeholder='CocktailName'
-			/>
-			<div className='ingredients-container'>
-				<p className='ingredients-title'>Ingredients</p>
-				<div className='ingredients-list-container'>
-					{ingredientInputs.map((ingredient, idx) => (
-						<Ingredients
-							key={idx}
-							ingredient={ingredient}
-							onUpdateInputValues={handleUpdateInputValues}
-							idx={idx}
-						/>
-					))}
+			<h2>Add a Cocktail</h2>
+			<div className='add-form-container'>
+				<input
+					onChange={(event) => setInput(event.target.value)}
+					value={cocktailName}
+					placeholder='Cocktail name'
+					className='cocktail-name-input'
+				/>
+				<div className='ingredients-container'>
+					<p className='ingredients-title'>Ingredients</p>
+					<div className='ingredients-list-container'>
+						{ingredientInputs.map((ingredient, idx) => (
+							<Ingredients
+								key={idx}
+								ingredient={ingredient}
+								onUpdateInputValues={handleUpdateInputValues}
+								idx={idx}
+							/>
+						))}
+					</div>
+					<button onClick={addIngredientInput}>+</button>
 				</div>
-				<button onClick={addIngredientInput}>+</button>
+				<button onClick={addCocktail} className='quiz-submit'>
+					Submit
+				</button>
 			</div>
-			<button onClick={addCocktail}>Submit</button>
 		</div>
 	);
 };

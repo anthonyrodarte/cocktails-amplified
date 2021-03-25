@@ -18,9 +18,15 @@ code {
   text-align: center;
 }
 
+h2 {
+  color: #079165;
+  font-size: 30px;
+}
+
 .header-nav > ul {
   list-style-type: none;
   padding-left: 0;
+  
 }
 
 .header-nav li {
@@ -68,7 +74,7 @@ code {
 
 .inc-title {
   font-size: 1.5rem;
-  color: #e8998d;
+  color: #079165;
   text-decoration: underline;
   margin-bottom: 0;
 }
@@ -185,4 +191,40 @@ code {
 .quiz-boxes.right {
   margin-right: auto;
   border-left: 0px;
+}
+
+.cocktail-name-input {
+  width: 100%;
+  max-width: 500px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #079165;
+  margin-bottom: 15px;
+  font-size: 20px;
+} 
+
+.add-form-container {
+  height: 450px;
+  padding: 0px 5px 0px 5px;
+}
+
+.add-form-container .ingredients-container {
+  border: 1px solid #079165;
+  margin-bottom: 15px;
+}
+
+.header-nav .button {
+  background: #079165 !important;
+  padding: 10px;
+  min-width: 100px;
+}
+
+.amp-sign-out-button button {
+  background: #079165 !important;
+}
+
+:root {
+  --amplify-primary-color: #079165;
+  --amplify-primary-tint: #079165;
+  --amplify-primary-shade: #079165;
 }

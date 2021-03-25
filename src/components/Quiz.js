@@ -141,15 +141,15 @@ const Quiz = () => {
 		}
 	};
 
-  const renderSubmitButton = () => {
-    if (cocktailName) {
-      return (
-        <button className='quiz-submit' onClick={validateIngredients}>
-						Submit
+	const renderSubmitButton = () => {
+		if (cocktailName) {
+			return (
+				<button className='quiz-submit' onClick={validateIngredients}>
+					Submit
 				</button>
-      )
-    }
-  }
+			);
+		}
+	};
 
 	useEffect(() => {
 		fetchCocktails();
@@ -162,7 +162,7 @@ const Quiz = () => {
 				<p>
 					Score: <span className='fade-in'>{score}</span>
 				</p>
-        {renderSubmitButton()}
+				{renderSubmitButton()}
 			</div>
 			<div className='quiz-boxes-container'>
 				<div className='quiz-boxes left'>
