@@ -158,7 +158,6 @@ const Quiz = () => {
 	return (
 		<div className='quiz'>
 			<div>
-				<h2>Cocktail Quiz</h2>
 				<p>
 					Score: <span className='fade-in'>{score}</span>
 				</p>

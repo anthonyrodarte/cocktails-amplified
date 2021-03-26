@@ -155,14 +155,15 @@ h2 {
 
 .ingredient-inputs > * {
   height: 100%;
-  font-size: 100%;
+  font-size: 17px;
   padding: 0;
   margin: 0;
   border: none;
 }
 
 .quantity-input {
-  width: 16%;
+  width: 22%;
+  padding-left: 1%;
 }
 
 .measurement-input {
@@ -170,7 +171,8 @@ h2 {
 }
 
 .ingredient-name-input {
-  width: 60%;
+  width: 55%;
+  padding-left: 2%;
 }
 
 .cocktail-title {
@@ -217,6 +219,12 @@ h2 {
   background: #079165 !important;
   padding: 10px;
   min-width: 100px;
+}
+
+.header-nav a {
+  color: #079165;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .amp-sign-out-button button {
