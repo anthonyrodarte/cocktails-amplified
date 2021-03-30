@@ -1,11 +1,10 @@
 import React from 'react';
 import LoaderIcon from './LoaderIcon';
 
-const Loader = ({ message }) => {
+const Loader = () => {
 	return (
 		<div className='loader center'>
 			<LoaderIcon />
-			{message}
 		</div>
 	);
 };
