@@ -1,5 +1,5 @@
 /* src/App.js */
-import React from 'react';
+import React, { useState } from 'react';
 import Amplify from 'aws-amplify';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
@@ -7,41 +7,58 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import awsExports from './aws-exports';
 import Quiz from './components/Quiz';
 import CocktailForm from './components/Form';
+import Loader from './components/Loader';
 
 Amplify.configure(awsExports);
 
-function App() {
-	return (
-		<Router>
-			<div className='App'>
-				<nav className='header-nav'>
-					<ul>
-						<li>
-							<Link to='/quiz'>Cocktail Quiz</Link>
-						</li>
-						<li>
-							<Link to='/cocktailform'>Add Cocktails</Link>
-						</li>
-						<li className='amp-sign-out-button'>
-							<AmplifySignOut />
-						</li>
-					</ul>
-				</nav>
+const App = () => {
+	const [displayLoader, changeLoader] = useState(false);
 
-				<Switch>
-					<Route path='/quiz'>
-						<Quiz />
-					</Route>
-					<Route path='/cocktailform'>
-						<CocktailForm />
-					</Route>
-					<Route path='/'>
-						<Quiz />
-					</Route>
-				</Switch>
-			</div>
-		</Router>
+	const handleLoaderUpdate = (display, message) => {
+		changeLoader(display, message);
+	};
+
+	const showLoader = () => {
+		if (displayLoader) {
+			return <Loader />;
+		}
+	};
+
+	return (
+		<div>
+			<Router>
+				<div className='App'>
+					<nav className='header-nav'>
+						<ul>
+							<li>
+								<Link to='/quiz'>Cocktail Quiz</Link>
+							</li>
+							<li>
+								<Link to='/cocktailform'>Add Cocktails</Link>
+							</li>
+							<li className='amp-sign-out-button'>
+								<AmplifySignOut />
+							</li>
+						</ul>
+					</nav>
+
+					<Switch>
+						<Route path='/quiz'>
+							<Quiz onLoaderUpdate={handleLoaderUpdate} />
+						</Route>
+						<Route path='/cocktailform'>
+							<CocktailForm onLoaderUpdate={handleLoaderUpdate} />
+						</Route>
+						<Route path='/'>
+							<Quiz />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+
+			{showLoader()}
+		</div>
 	);
-}
+};
 
 export default withAuthenticator(App, { includeGreetings: true });

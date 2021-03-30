@@ -5,7 +5,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import Ingredients from './Ingredients';
 import { listCocktails } from '../graphql/queries';
 
-const Quiz = () => {
+const Quiz = ({ onLoaderUpdate }) => {
 	const [cocktailList, changeCocktailList] = useState({
 		name: '',
 		recipe: [''],
@@ -29,9 +29,11 @@ const Quiz = () => {
 
 	async function fetchCocktails() {
 		try {
+			onLoaderUpdate(true);
 			const cocktailData = await API.graphql(graphqlOperation(listCocktails));
 			const cocktails = cocktailData.data.listCocktails.items;
 			changeCocktailList(shuffle(cocktails));
+			onLoaderUpdate(false);
 		} catch (err) {
 			console.log('error fetching cocktails', err);
 		}

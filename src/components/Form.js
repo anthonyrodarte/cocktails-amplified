@@ -5,7 +5,7 @@ import Ingredients from './Ingredients';
 
 const initialState = [{ quantity: '', measurement: '', name: '' }];
 
-const CocktailForm = () => {
+const CocktailForm = ({ onLoaderUpdate }) => {
 	const [ingredientInputs, changeIngredientInput] = useState(initialState);
 	const [cocktailName, setCocktailName] = useState('');
 	const [currentUsername, setCurrentUsername] = useState('');
@@ -42,6 +42,7 @@ const CocktailForm = () => {
 
 	async function addCocktail(e) {
 		e.preventDefault();
+		onLoaderUpdate(true);
 		try {
 			if (!cocktailName || !currentUsername) return;
 			const recipeStrings = ingredientInputs.map((recipe) => {
@@ -63,6 +64,7 @@ const CocktailForm = () => {
 		} catch (err) {
 			console.log('error creating cocktail:', err);
 		}
+		onLoaderUpdate(false);
 	}
 
 	useEffect(() => {
