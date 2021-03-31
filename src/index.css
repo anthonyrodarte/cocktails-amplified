@@ -227,6 +227,27 @@ h2 {
   text-decoration: none;
 }
 
+.loader, .loader > * {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.add-cocktail-message {
+  background: #fff;
+  padding: 5px 15px;
+}
+
+.loader {
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, .5);
+}
+.loader > * {
+  transform: translate(-10%, -15%);
+}
+
 .amp-sign-out-button button {
   background: #079165 !important;
 }

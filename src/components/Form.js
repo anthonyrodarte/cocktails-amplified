@@ -3,12 +3,13 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createCocktail } from '../graphql/mutations';
 import Ingredients from './Ingredients';
 
-const initialState = [{ quantity: '', measurement: '', name: '' }];
-
-const CocktailForm = () => {
-	const [ingredientInputs, changeIngredientInput] = useState(initialState);
+const CocktailForm = ({ onLoaderUpdate }) => {
+	const [ingredientInputs, changeIngredientInput] = useState([
+		{ quantity: '', measurement: '', name: '' },
+	]);
 	const [cocktailName, setCocktailName] = useState('');
 	const [currentUsername, setCurrentUsername] = useState('');
+	const [addCocktailMessage, setCocktailMessage] = useState('');
 
 	const handleUpdateInputValues = (e, i) => {
 		const type = e.target.getAttribute('data-type');
@@ -42,6 +43,7 @@ const CocktailForm = () => {
 
 	async function addCocktail(e) {
 		e.preventDefault();
+		onLoaderUpdate(true);
 		try {
 			if (!cocktailName || !currentUsername) return;
 			const recipeStrings = ingredientInputs.map((recipe) => {
@@ -55,15 +57,28 @@ const CocktailForm = () => {
 				recipe: recipeStrings,
 				username: currentUsername,
 			};
-			setCocktailName('');
-			changeIngredientInput(initialState);
+
 			await API.graphql(
 				graphqlOperation(createCocktail, { input: cocktailPayload })
 			);
+
+			setCocktailMessage(
+				'Your cocktail ' + cocktailName + ' has been added to the quiz!'
+			);
+			setCocktailName('');
+			changeIngredientInput([{ quantity: '', measurement: '', name: '' }]);
 		} catch (err) {
 			console.log('error creating cocktail:', err);
+			setCocktailMessage('There was an error creating your cocktail.');
 		}
+		onLoaderUpdate(false);
 	}
+
+	const renderAddCocktailMessage = () => {
+		if (addCocktailMessage) {
+			return <span class='add-cocktail-message'>{addCocktailMessage}</span>;
+		}
+	};
 
 	useEffect(() => {
 		getUser().then((userData) => setCurrentUsername(userData.username));
@@ -71,6 +86,7 @@ const CocktailForm = () => {
 
 	return (
 		<div>
+			{renderAddCocktailMessage()}
 			<h2>Add a Cocktail</h2>
 			<div className='add-form-container'>
 				<input
