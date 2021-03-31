@@ -3,10 +3,10 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createCocktail } from '../graphql/mutations';
 import Ingredients from './Ingredients';
 
-const initialState = [{ quantity: '', measurement: '', name: '' }];
-
 const CocktailForm = ({ onLoaderUpdate }) => {
-	const [ingredientInputs, changeIngredientInput] = useState(initialState);
+	const [ingredientInputs, changeIngredientInput] = useState([
+		{ quantity: '', measurement: '', name: '' },
+	]);
 	const [cocktailName, setCocktailName] = useState('');
 	const [currentUsername, setCurrentUsername] = useState('');
 	const [addCocktailMessage, setCocktailMessage] = useState('');
@@ -61,13 +61,12 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 			await API.graphql(
 				graphqlOperation(createCocktail, { input: cocktailPayload })
 			);
-			console.log(cocktailName);
 
 			setCocktailMessage(
 				'Your cocktail ' + cocktailName + ' has been added to the quiz!'
 			);
 			setCocktailName('');
-			changeIngredientInput(initialState);
+			changeIngredientInput([{ quantity: '', measurement: '', name: '' }]);
 		} catch (err) {
 			console.log('error creating cocktail:', err);
 			setCocktailMessage('There was an error creating your cocktail.');
