@@ -18,12 +18,6 @@ const App = () => {
 		changeLoader(display, message);
 	};
 
-	const showLoader = () => {
-		if (displayLoader) {
-			return <Loader />;
-		}
-	};
-
 	return (
 		<div>
 			<Router>
@@ -56,7 +50,7 @@ const App = () => {
 				</div>
 			</Router>
 
-			{showLoader()}
+			{displayLoader && <Loader />}
 		</div>
 	);
 };
