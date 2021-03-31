@@ -233,6 +233,11 @@ h2 {
   left: 50%;
 }
 
+.add-cocktail-message {
+  background: #fff;
+  padding: 5px 15px;
+}
+
 .loader {
   width: 100vw;
   height: 100vh;

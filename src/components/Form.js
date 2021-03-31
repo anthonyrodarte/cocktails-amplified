@@ -9,6 +9,7 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 	const [ingredientInputs, changeIngredientInput] = useState(initialState);
 	const [cocktailName, setCocktailName] = useState('');
 	const [currentUsername, setCurrentUsername] = useState('');
+	const [addCocktailMessage, setCocktailMessage] = useState('');
 
 	const handleUpdateInputValues = (e, i) => {
 		const type = e.target.getAttribute('data-type');
@@ -56,16 +57,29 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 				recipe: recipeStrings,
 				username: currentUsername,
 			};
-			setCocktailName('');
-			changeIngredientInput(initialState);
+
 			await API.graphql(
 				graphqlOperation(createCocktail, { input: cocktailPayload })
 			);
+			console.log(cocktailName);
+
+			setCocktailMessage(
+				'Your cocktail ' + cocktailName + ' has been added to the quiz!'
+			);
+			setCocktailName('');
+			changeIngredientInput(initialState);
 		} catch (err) {
 			console.log('error creating cocktail:', err);
+			setCocktailMessage('There was an error creating your cocktail.');
 		}
 		onLoaderUpdate(false);
 	}
+
+	const renderAddCocktailMessage = () => {
+		if (addCocktailMessage) {
+			return <span class='add-cocktail-message'>{addCocktailMessage}</span>;
+		}
+	};
 
 	useEffect(() => {
 		getUser().then((userData) => setCurrentUsername(userData.username));
@@ -73,6 +87,7 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 
 	return (
 		<div>
+			{renderAddCocktailMessage()}
 			<h2>Add a Cocktail</h2>
 			<div className='add-form-container'>
 				<input
