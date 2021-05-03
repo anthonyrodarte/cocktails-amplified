@@ -72,6 +72,10 @@ h2 {
   color: #079143;
 }
 
+.inc-list-container {
+  overflow: scroll;
+}
+
 .inc-title {
   font-size: 1.5rem;
   color: #079165;

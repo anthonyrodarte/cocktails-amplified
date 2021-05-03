@@ -96,38 +96,42 @@ const Quiz = ({ onLoaderUpdate }) => {
 	const renderControls = () => {
 		if (cocktailName) {
 			return (
-				<div className='quiz-form'>
-					<div className='ingredients-container'>
-						<p className='ingredients-title'>Ingredients</p>
-						<div className='ingredients-list-container'>
-							{ingredientInputs.map((ingredient, idx) => (
-								<Ingredients
-									key={idx}
-									ingredient={ingredient}
-									onUpdateInputValues={handleUpdateInputValues}
-									idx={idx}
-								/>
-							))}
+				<div className='quiz-boxes right'>
+					<div className='quiz-form'>
+						<div className='ingredients-container'>
+							<p className='ingredients-title'>Ingredients</p>
+							<div className='ingredients-list-container'>
+								{ingredientInputs.map((ingredient, idx) => (
+									<Ingredients
+										key={idx}
+										ingredient={ingredient}
+										onUpdateInputValues={handleUpdateInputValues}
+										idx={idx}
+									/>
+								))}
+							</div>
+							<button onClick={addIngredientInput}>+</button>
 						</div>
-						<button onClick={addIngredientInput}>+</button>
 					</div>
 				</div>
 			);
 		} else {
 			const { incorrectList } = quizScore;
 			return (
-				<div>
-					<p className='inc-title'>Incorrect Answers</p>
-					{incorrectList.map((cocktail, idx) => (
-						<div key={idx}>
-							<p className='inc-cocktail-name'>
-								Cocktail: {cocktail.cocktailName}
-							</p>
-							<p className='inc-recipe'>
-								Correct Recipe: {cocktail.cocktailRecipe.join(', ')}
-							</p>
-						</div>
-					))}
+				<div className='quiz-boxes right inc-list-container'>
+					<div>
+						<p className='inc-title'>Incorrect Answers</p>
+						{incorrectList.map((cocktail, idx) => (
+							<div key={idx}>
+								<p className='inc-cocktail-name'>
+									Cocktail: {cocktail.cocktailName}
+								</p>
+								<p className='inc-recipe'>
+									Correct Recipe: {cocktail.cocktailRecipe.join(', ')}
+								</p>
+							</div>
+						))}
+					</div>
 				</div>
 			);
 		}
@@ -174,7 +178,7 @@ const Quiz = ({ onLoaderUpdate }) => {
 						alt='cocktail'
 					/>
 				</div>
-				<div className='quiz-boxes right'>{renderControls()}</div>
+				{renderControls()}
 			</div>
 		</div>
 	);
