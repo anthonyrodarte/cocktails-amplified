@@ -8,6 +8,7 @@ import awsExports from './aws-exports';
 import Quiz from './components/Quiz';
 import CocktailForm from './components/Form';
 import Loader from './components/Loader';
+import About from './components/Anthony';
 
 Amplify.configure(awsExports);
 
@@ -24,6 +25,9 @@ const App = () => {
 				<div className='App'>
 					<nav className='header-nav'>
 						<ul>
+							<li>
+								<Link to='/'>Bio</Link>
+							</li>
 							<li>
 								<Link to='/quiz'>Cocktail Quiz</Link>
 							</li>
@@ -44,7 +48,7 @@ const App = () => {
 							<CocktailForm onLoaderUpdate={handleLoaderUpdate} />
 						</Route>
 						<Route path='/'>
-							<Quiz />
+							<About />
 						</Route>
 					</Switch>
 				</div>
