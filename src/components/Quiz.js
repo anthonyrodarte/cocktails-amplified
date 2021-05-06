@@ -4,6 +4,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 
 import Ingredients from './Ingredients';
 import { listCocktails } from '../graphql/queries';
+import CocktialImage from '../images/Negroni.png';
 
 const Quiz = ({ onLoaderUpdate }) => {
 	const [cocktailList, changeCocktailList] = useState({
@@ -144,6 +145,12 @@ const Quiz = ({ onLoaderUpdate }) => {
 					<span>{cocktailName}</span>
 				</p>
 			);
+		} else {
+			return (
+				<p className='cocktail-title'>
+					<span>Quiz Complete!</span>
+				</p>
+			);
 		}
 	};
 
@@ -172,11 +179,7 @@ const Quiz = ({ onLoaderUpdate }) => {
 			<div className='quiz-boxes-container'>
 				<div className='quiz-boxes left'>
 					{renderCocktailName()}
-					<img
-						src='https://horizonlives3.s3.amazonaws.com/PR1517/Haig_Coffee_Negroni.png'
-						className='cocktail-image'
-						alt='cocktail'
-					/>
+					<img src={CocktialImage} className='cocktail-image' alt='cocktail' />
 				</div>
 				{renderControls()}
 			</div>

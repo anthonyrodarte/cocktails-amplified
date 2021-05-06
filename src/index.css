@@ -256,6 +256,12 @@ h2 {
   background: #079165 !important;
 }
 
+.selfie {
+  border: solid 2px #000;
+  border-radius: 50%;
+  max-width: 300px;
+}
+
 :root {
   --amplify-primary-color: #079165;
   --amplify-primary-tint: #079165;
