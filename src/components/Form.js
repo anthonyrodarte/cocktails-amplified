@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createCocktail } from '../graphql/mutations';
 import Ingredients from './Ingredients';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const CocktailForm = ({ onLoaderUpdate }) => {
 	const [ingredientInputs, changeIngredientInput] = useState([
@@ -117,4 +118,4 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 	);
 };
 
-export default CocktailForm;
+export default withAuthenticator(CocktailForm, { includeGreetings: true });

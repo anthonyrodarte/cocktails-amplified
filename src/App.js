@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Amplify from 'aws-amplify';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 import awsExports from './aws-exports';
 import Quiz from './components/Quiz';
@@ -59,4 +59,4 @@ const App = () => {
 	);
 };
 
-export default withAuthenticator(App, { includeGreetings: true });
+export default App;

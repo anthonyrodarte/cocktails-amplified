@@ -262,6 +262,10 @@ h2 {
   max-width: 300px;
 }
 
+.auth-container {
+  align-items: start;
+}
+
 :root {
   --amplify-primary-color: #079165;
   --amplify-primary-tint: #079165;
