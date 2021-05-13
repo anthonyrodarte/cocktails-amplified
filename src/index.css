@@ -252,18 +252,15 @@ h2 {
   transform: translate(-10%, -15%);
 }
 
-.amp-sign-out-button button {
-  background: #079165 !important;
+.amp-sign-out-button {
+  width: 153px;
+  margin: auto;
 }
 
 .selfie {
   border: solid 2px #000;
   border-radius: 50%;
   max-width: 300px;
-}
-
-.auth-container {
-  align-items: start;
 }
 
 :root {
