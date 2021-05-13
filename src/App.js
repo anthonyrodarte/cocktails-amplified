@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Amplify from 'aws-amplify';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 import awsExports from './aws-exports';
 import Quiz from './components/Quiz';
@@ -33,9 +32,6 @@ const App = () => {
 							</li>
 							<li>
 								<Link to='/cocktailform'>Add Cocktails</Link>
-							</li>
-							<li className='amp-sign-out-button'>
-								<AmplifySignOut />
 							</li>
 						</ul>
 					</nav>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createCocktail } from '../graphql/mutations';
 import Ingredients from './Ingredients';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 const CocktailForm = ({ onLoaderUpdate }) => {
 	const [ingredientInputs, changeIngredientInput] = useState([
@@ -87,6 +87,9 @@ const CocktailForm = ({ onLoaderUpdate }) => {
 
 	return (
 		<div>
+			<div className='amp-sign-out-button'>
+				<AmplifySignOut />
+			</div>
 			{renderAddCocktailMessage()}
 			<h2>Add a Cocktail</h2>
 			<div className='add-form-container'>
