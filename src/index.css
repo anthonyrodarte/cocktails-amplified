@@ -283,6 +283,11 @@ h2 {
   }
 }
 
+@media only screen and (max-width: 420px) {
+  .quiz-boxes {
+    width: 350px;
+  }
+}
 
 :root {
   --amplify-primary-color: #079165;
