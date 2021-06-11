@@ -263,6 +263,27 @@ h2 {
   max-width: 300px;
 }
 
+@media only screen and (max-width: 900px) {
+  .quiz-boxes-container {
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+  }
+
+  .quiz-boxes.left {
+    border: 1px solid #079165;
+    border-bottom: solid 1px #000;
+    margin: 0;
+  }
+  
+  .quiz-boxes.right {
+    border: 1px solid #079165;
+    border-top: 0px;
+    margin: 0;
+  }
+}
+
+
 :root {
   --amplify-primary-color: #079165;
   --amplify-primary-tint: #079165;
