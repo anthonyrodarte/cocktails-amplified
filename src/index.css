@@ -1,16 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background: #d9ffe8;
+  background: #08468f;
+  background-image: url("./images/background-shapes.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom left;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -26,16 +30,27 @@ h2 {
 .header-nav > ul {
   list-style-type: none;
   padding-left: 0;
-  
 }
 
 .header-nav li {
   display: inline-block;
-  margin: 0 10px 20px 10px;
+  margin: 2px;
+  padding: 5px 10px;
+  border: 2px solid #000;
+  background: #f6ea3c;
+}
+
+.slanted-box {
+  transform: skewX(-10deg);
+  background: #f6ea3c;
+  color: #d4001f;
+  padding: 5px 10px;
+  border: 2px solid #000;
+  display: inline-block;
 }
 
 .quiz {
-  color: #079165;
+  color: #000;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 600;
@@ -43,9 +58,9 @@ h2 {
 
 .quiz-submit {
   padding: 5px;
-  background: #fff;
-  color: #079165;
-  border: 2px solid #079165;
+  background: #f6ea3c;
+  color: #08468f;
+  border: 2px solid #000;
   font-weight: 600;
   font-size: 15px;
   margin-bottom: 20px;
@@ -56,7 +71,7 @@ h2 {
 }
 
 .cocktail-name {
-  border: 4px solid #FBF7F4;
+  border: 4px solid #fbf7f4;
   text-transform: uppercase;
   padding: 5px;
 }
@@ -69,7 +84,7 @@ h2 {
 .quiz header {
   font-size: 35px;
   font-weight: 800;
-  color: #079143;
+  color: #000;
 }
 
 .inc-list-container {
@@ -78,7 +93,7 @@ h2 {
 
 .inc-title {
   font-size: 1.5rem;
-  color: #079165;
+  color: #000;
   text-decoration: underline;
   margin-bottom: 0;
 }
@@ -98,7 +113,7 @@ h2 {
   height: 18%;
   border-bottom: 1px solid #000;
   text-align: center;
-  line-height: 80px;;
+  line-height: 80px;
   margin: 0;
   color: #000;
 }
@@ -127,6 +142,8 @@ h2 {
   bottom: 0;
   border-radius: 0;
   border: 1px solid;
+  border-left: 0;
+  border-right: 0;
   font-size: 30px;
 }
 
@@ -149,7 +166,7 @@ h2 {
   width: 400px;
   display: inline-block;
   height: 100%;
-  border: 1px solid #079165;
+  border: 1px solid #000;
   background: #fff;
 }
 
@@ -184,7 +201,7 @@ h2 {
   height: 18%;
   border-bottom: 1px solid #000;
   text-align: center;
-  line-height: 80px;;
+  line-height: 80px;
   margin: 0;
   color: #000;
 }
@@ -204,10 +221,18 @@ h2 {
   max-width: 500px;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #079165;
+  border-bottom: 2px solid #000;
   margin-bottom: 15px;
   font-size: 20px;
-} 
+}
+
+.social-links {
+  display: inline-block;
+  padding: 10px px 20px;
+  background: #eee;
+  border: 2px solid #000;
+  margin-bottom: 20px;
+}
 
 .add-form-container {
   height: 450px;
@@ -215,7 +240,7 @@ h2 {
 }
 
 .add-form-container .ingredients-container {
-  border: 1px solid #079165;
+  border: 1px solid #000;
   margin-bottom: 15px;
 }
 
@@ -226,30 +251,31 @@ h2 {
 }
 
 .header-nav a {
-  color: #079165;
+  color: #08468f;
   font-weight: 600;
   text-decoration: none;
 }
 
-.loader, .loader > * {
+.loader,
+.loader > * {
   position: fixed;
   top: 50%;
   left: 50%;
-}
-
-.add-cocktail-message {
-  background: #fff;
-  padding: 5px 15px;
 }
 
 .loader {
   width: 100vw;
   height: 100vh;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, .5);
+  background: #08468f;
 }
 .loader > * {
   transform: translate(-10%, -15%);
+}
+
+.add-cocktail-message {
+  background: #fff;
+  padding: 5px 15px;
 }
 
 .amp-sign-out-button {
@@ -259,8 +285,30 @@ h2 {
 
 .selfie {
   border: solid 2px #000;
-  border-radius: 50%;
   max-width: 300px;
+}
+
+.bio-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: auto;
+}
+
+.bio-row-item {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.bio-text {
+  padding: 20px;
+  background: #1f538f;
+  border: 2px solid #000;
+  color: #ccc;
+  max-width: 300px;
+  border-radius: 2px;
 }
 
 .linkedIn-logo {
@@ -281,11 +329,11 @@ h2 {
   }
 
   .quiz-boxes.left {
-    border: 1px solid #079165;
+    border: 1px solid #000;
     border-bottom: solid 1px #000;
     margin: 0;
   }
-  
+
   .quiz-boxes.right {
     border: 1px solid #079165;
     border-top: 0px;
@@ -300,7 +348,5 @@ h2 {
 }
 
 :root {
-  --amplify-primary-color: #079165;
-  --amplify-primary-tint: #079165;
-  --amplify-primary-shade: #079165;
+  --amplify-primary-color: #000;
 }
