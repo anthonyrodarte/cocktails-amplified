@@ -1,15 +1,22 @@
 import React from "react";
 
-import Selfie from "../images/anthony.jpeg";
+import bio from "./bio";
+import Selfie from "../images/WebsiteCard.jpeg";
 import Github from "../images/GitHub-logo.png";
 import LinkedIn from "../images/linkedin-logo-copy.png";
 
 const About = () => {
   return (
     <div>
-      <img src={Selfie} className="selfie" alt="Anthony Rodarte" />
-      <div>
-        <h1 className="slanted-box">ANTHONY RODARTE</h1>
+      <div className="bio-row">
+        <div className="bio-row-item">
+          <img src={Selfie} className="selfie" alt="Anthony Rodarte" />
+        </div>
+        <div className="bio-row-item">
+          <div className="bio-text">
+            <span>{bio}</span>
+          </div>
+        </div>
       </div>
 
       <div>

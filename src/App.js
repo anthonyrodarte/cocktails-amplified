@@ -25,7 +25,7 @@ const App = () => {
           <nav className="header-nav">
             <ul>
               <li>
-                <Link to="/">BIO</Link>
+                <Link to="/">HOME</Link>
               </li>
               <li>
                 <Link to="/quiz">COCKTAIL QUIZ</Link>
