@@ -11,6 +11,10 @@ const Quiz = ({ onLoaderUpdate }) => {
     name: "",
     recipe: [""],
   });
+  const [backupList, changeBackupList] = useState({
+    name: "",
+    recipe: [""],
+  });
   const [ingredientInputs, changeIngredientInput] = useState([
     { quantity: "", measurement: "", name: "" },
   ]);
@@ -34,6 +38,7 @@ const Quiz = ({ onLoaderUpdate }) => {
       const cocktailData = await API.graphql(graphqlOperation(listCocktails));
       const cocktails = cocktailData.data.listCocktails.items;
       changeCocktailList(shuffle(cocktails));
+      changeBackupList(cocktails);
       onLoaderUpdate(false);
     } catch (err) {
       console.log("error fetching cocktails", err);
@@ -46,8 +51,18 @@ const Quiz = ({ onLoaderUpdate }) => {
     changeIngredientInput([{ quantity: "", measurement: "", name: "" }]);
   };
 
+  const resetCocktailQuiz = () => {
+    changeCocktailList(shuffle(backupList));
+    changeIngredientInput([{ quantity: "", measurement: "", name: "" }]);
+    updateQuizScore({
+      score: 0,
+      incorrectList: [],
+    });
+  };
+
   const validateIngredients = (e) => {
     e.preventDefault();
+    console.log(backupList);
     const recipeStrings = ingredientInputs.map((recipe) => {
       const { quantity, measurement, name } = recipe;
       const recipeString = quantity + " " + measurement + " " + name;
@@ -154,11 +169,19 @@ const Quiz = ({ onLoaderUpdate }) => {
     }
   };
 
+  const renderResetButton = () => {
+    return (
+      <button className="quiz-submit" onClick={resetCocktailQuiz}>
+        RESET QUIZ
+      </button>
+    );
+  };
+
   const renderSubmitButton = () => {
     if (cocktailName) {
       return (
         <button className="quiz-submit" onClick={validateIngredients}>
-          SUBMIT
+          SUBMIT COCKTAIL
         </button>
       );
     }
@@ -176,7 +199,7 @@ const Quiz = ({ onLoaderUpdate }) => {
             SCORE: <span className="fade-in">{score}</span>
           </p>
         </div>
-
+        {renderResetButton()}
         {renderSubmitButton()}
       </div>
       <div className="quiz-boxes-container">
