@@ -171,7 +171,7 @@ const Quiz = ({ onLoaderUpdate }) => {
 
   const renderResetButton = () => {
     return (
-      <button className="quiz-submit" onClick={resetCocktailQuiz}>
+      <button className="quiz-submit quiz-reset" onClick={resetCocktailQuiz}>
         RESET QUIZ
       </button>
     );

@@ -56,6 +56,9 @@ h2 {
   font-weight: 600;
 }
 
+.quiz-reset {
+  margin-right: 15px;
+}
 .quiz-submit {
   padding: 5px;
   background: #f6ea3c;
