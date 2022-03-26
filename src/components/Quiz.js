@@ -42,6 +42,7 @@ const Quiz = ({ onLoaderUpdate }) => {
       onLoaderUpdate(false);
     } catch (err) {
       console.log("error fetching cocktails", err);
+      onLoaderUpdate(false);
     }
   }
 
@@ -62,7 +63,6 @@ const Quiz = ({ onLoaderUpdate }) => {
 
   const validateIngredients = (e) => {
     e.preventDefault();
-    console.log(backupList);
     const recipeStrings = ingredientInputs.map((recipe) => {
       const { quantity, measurement, name } = recipe;
       const recipeString = quantity + " " + measurement + " " + name;
