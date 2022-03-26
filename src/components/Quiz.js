@@ -42,6 +42,7 @@ const Quiz = ({ onLoaderUpdate }) => {
       onLoaderUpdate(false);
     } catch (err) {
       console.log("error fetching cocktails", err);
+      onLoaderUpdate(false);
     }
   }
 

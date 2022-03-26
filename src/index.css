@@ -57,8 +57,10 @@ h2 {
 }
 
 .quiz-reset {
-  margin-right: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
+
 .quiz-submit {
   padding: 5px;
   background: #f6ea3c;
